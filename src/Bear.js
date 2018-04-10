@@ -9,7 +9,7 @@ class Bear extends Component {
         <ul>
           {
             this.props.bears.map(bear => {
-              return (<li>{ bear.name } (น้ำหนัก { bear.weight } กรัม)</li>)
+              return (<li>{bear.name} (น้ำหนัก {bear.weight} กรัม) - <a href='#' onClick={this.props.removeBear(bear.id)}>ลบ</a></li>)
             })
           }
         </ul>

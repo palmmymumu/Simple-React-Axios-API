@@ -5,7 +5,7 @@ import './App.css';
 import axios from 'axios';
 import Bear from './Bear';
 
-const API_URL = 'http://localhost:8000/';
+const API_URL = 'http://localhost:8000';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +21,12 @@ class App extends Component {
       this.setState({ loading: false, bears: res.data });
     });
   }
+  removeBear = (id) => () => {
+    this.setState({ loading: true });
+    axios.delete(API_URL + '/' + id).then(res => {
+      this.setState({ loading: false, bears: res.data });
+    });
+  }
   componentDidMount() {
     this.renderBears();
   }
@@ -29,7 +35,7 @@ class App extends Component {
       <div className='container'>
         <h1>Bear</h1>
         {this.state.loading && (<p>Loading...</p>)}
-        {!this.state.loading && (<Bear bears={this.state.bears} />)}
+        {!this.state.loading && (<Bear bears={this.state.bears} removeBear={this.removeBear} />)}
         <a href='#' onClick={this.renderBears}>Refresh</a>
       </div>
     );

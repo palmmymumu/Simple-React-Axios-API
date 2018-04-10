@@ -3,13 +3,30 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.listen(8000);
 
-var bears = [];
+var bears = [
+  {
+    id: 1,
+    name: 'Pooh',
+    weight: 200
+  },
+  {
+    id: 2,
+    name: 'Mhee-Kwai',
+    weight: 1500
+  },
+  {
+    id: 3,
+    name: 'Panda',
+    weight: 800
+  }
+];
 
 app.get('/', (req, res) => {
   res.json(bears);
